@@ -11,7 +11,7 @@ It was created so developers can easly animate their RecyclerView. It also takes
 #Include in your project
 ##Using Maven
 ```javascript
-compile('com.mikepenz:itemanimators:0.0.1-SNAPSHOT@aar') {
+compile('com.mikepenz:itemanimators:0.1.0-SNAPSHOT@aar') {
 	transitive = true
 }
 
