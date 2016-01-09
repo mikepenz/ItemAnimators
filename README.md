@@ -6,7 +6,7 @@ It was created so developers can easly animate their RecyclerView. It also takes
 > **DISCLAIMER**: this library does not animate items on scroll, just when added, removed, moved, or changed
 
 #Preview
-##Screenshots
+<img src="DEV/preview/Telecine_2016-01-09-19-01-46.gif" width="32%"> 
 
 #Include in your project
 ##Using Maven
