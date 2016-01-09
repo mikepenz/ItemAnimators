@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="define_itemanimators">year;owner</string>
+    <string name="library_itemanimators_author">Mike Penz</string>
+    <string name="library_itemanimators_authorWebsite">http://mikepenz.com/</string>
+    <string name="library_itemanimators_libraryName">itemanimators</string>
+    <string name="library_itemanimators_libraryDescription">
+        <![CDATA[
+           The <b>ItemAnimators</b> library comes with a huge collections of pre-created Animators for your RecyclerView.
+        ]]>
+    </string>
+    <string name="library_itemanimators_libraryVersion">0.0.1-SNAPSHOT</string>
+    <string name="library_itemanimators_libraryWebsite">https://github.com/mikepenz/itemanimators</string>
+    <string name="library_itemanimators_licenseId">apache_2_0</string>
+    <string name="library_itemanimators_isOpenSource">true</string>
+    <string name="library_itemanimators_repositoryLink">https://github.com/mikepenz/itemanimators</string>
+    <!-- Custom variables section -->
+    <string name="library_itemanimators_owner">Mike Penz</string>
+    <string name="library_itemanimators_year">2016</string>
+</resources>

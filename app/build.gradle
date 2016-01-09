@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+//wrap with try and catch so the build is working even if the signing stuff is missing
+try {
+    apply from: '../../../signing.gradle'
+} catch (ex) {
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion 11
+        targetSdkVersion 23
+        versionCode 1
+        versionName '0.0.1-SNAPSHOT'
+
+        applicationVariants.all { variant ->
+            variant.outputs.each { output ->
+                def file = output.outputFile
+                def fileName = file.name.replace(".apk", "-v" + versionName + "-c" + versionCode + ".apk")
+                output.outputFile = new File(file.parentFile, fileName)
+            }
+        }
+    }
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-DEBUG"
+            try {
+                signingConfig signingConfigs.debug
+            } catch (ex) {
+            }
+            minifyEnabled false
+        }
+        release {
+            try {
+                signingConfig signingConfigs.release
+            } catch (ex) {
+            }
+            zipAlignEnabled true
+            minifyEnabled false
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile project(':library')
+
+    //used to generate the drawer on the left
+    //https://github.com/mikepenz/MaterialDrawer
+    compile('com.mikepenz:materialdrawer:5.0.0.fastAdapter.b5-SNAPSHOT@aar') {
+        transitive = true
+        exclude module: "itemanimators"
+    }
+    //used to generate the Open Source section
+    //https://github.com/mikepenz/AboutLibraries
+    compile('com.mikepenz:aboutlibraries:5.3.4@aar') {
+        transitive = true
+    }
+    //used to display the icons in the drawer
+    //https://github.com/mikepenz/Android-Iconics
+    compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.1@aar'
+
+    //https://github.com/JakeWharton/butterknife
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+    //used to load the images in the ImageListSample
+    //https://github.com/bumptech/glide
+    compile 'com.github.bumptech.glide:glide:3.6.1'
+}
