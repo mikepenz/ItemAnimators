@@ -1,4 +1,4 @@
-#itemanimators  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/itemanimators/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/itemanimators) [![Join the chat at https://gitter.im/mikepenz/itemanimators](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mikepenz/itemanimators?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+#ItemAnimators  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/itemanimators/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/itemanimators) [![Join the chat at https://gitter.im/mikepenz/itemanimators](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mikepenz/itemanimators?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 The **ItemAnimators** library comes with a huge collections of pre-created Animators for your RecyclerView.
 It was created so developers can easly animate their RecyclerView. It also takes care about correctly handling all view states so you don't have to.
