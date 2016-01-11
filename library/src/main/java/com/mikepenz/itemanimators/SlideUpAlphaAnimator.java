@@ -38,7 +38,7 @@ public class SlideUpAlphaAnimator extends DefaultAnimator<SlideUpAlphaAnimator> 
     @Override
     public ViewPropertyAnimatorCompat removeAnimation(RecyclerView.ViewHolder holder) {
         final ViewPropertyAnimatorCompat animation = ViewCompat.animate(holder.itemView);
-        return animation.setDuration(getMoveDuration()).alpha(0).translationY(holder.itemView.getHeight());
+        return animation.setDuration(getRemoveDuration()).alpha(0).translationY(holder.itemView.getHeight());
     }
 
     @Override
