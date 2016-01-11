@@ -7,6 +7,7 @@ import android.view.View;
 
 /**
  * Created by mikepenz on 08.01.16.
+ * Base for this animator thanks to @gabrielemariotti - https://github.com/gabrielemariotti/RecyclerViewItemAnimators
  */
 public class SlideInOutRightAnimator extends DefaultAnimator<SlideInOutRightAnimator> {
 
