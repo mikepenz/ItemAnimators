@@ -239,8 +239,7 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
     }
 
     private void animateRemoveImpl(final ViewHolder holder) {
-        final View view = holder.itemView;
-        final ViewPropertyAnimatorCompat animation = removeAnimation(view);
+        final ViewPropertyAnimatorCompat animation = removeAnimation(holder);
         mRemoveAnimations.add(holder);
         animation.setListener(new VpaListenerAdapter() {
             @Override
@@ -251,7 +250,7 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
             @Override
             public void onAnimationEnd(View view) {
                 animation.setListener(null);
-                removeAnimationCleanup(view);
+                removeAnimationCleanup(holder);
                 dispatchRemoveFinished(holder);
                 mRemoveAnimations.remove(holder);
                 dispatchFinishedWhenDone();
@@ -259,21 +258,20 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
         }).start();
     }
 
-    abstract public ViewPropertyAnimatorCompat removeAnimation(View view);
+    abstract public ViewPropertyAnimatorCompat removeAnimation(ViewHolder holder);
 
-    abstract public void removeAnimationCleanup(View view);
+    abstract public void removeAnimationCleanup(ViewHolder holder);
 
     @Override
     public boolean animateAdd(final ViewHolder holder) {
         resetAnimation(holder);
-        addAnimationPrepare(holder.itemView);
+        addAnimationPrepare(holder);
         mPendingAdditions.add(holder);
         return true;
     }
 
     private void animateAddImpl(final ViewHolder holder) {
-        final View view = holder.itemView;
-        final ViewPropertyAnimatorCompat animation = addAnimation(view);
+        final ViewPropertyAnimatorCompat animation = addAnimation(holder);
         mAddAnimations.add(holder);
         animation.
                 setListener(new VpaListenerAdapter() {
@@ -284,7 +282,7 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
 
                     @Override
                     public void onAnimationCancel(View view) {
-                        addAnimationCleanup(view);
+                        addAnimationCleanup(holder);
                     }
 
                     @Override
@@ -293,6 +291,7 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
                         dispatchAddFinished(holder);
                         mAddAnimations.remove(holder);
                         dispatchFinishedWhenDone();
+                        addAnimationCleanup(holder);
                     }
                 }).start();
     }
@@ -300,24 +299,24 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
     /**
      * the animation to prepare the view before the add animation is run
      *
-     * @param view
+     * @param holder
      */
-    abstract public void addAnimationPrepare(View view);
+    abstract public void addAnimationPrepare(ViewHolder holder);
 
     /**
      * the animation for adding a view
      *
-     * @param view
+     * @param holder
      * @return
      */
-    abstract public ViewPropertyAnimatorCompat addAnimation(View view);
+    abstract public ViewPropertyAnimatorCompat addAnimation(ViewHolder holder);
 
     /**
      * the cleanup method if the animation needs to be stopped. and tro prepare for the next view
      *
-     * @param view
+     * @param holder
      */
-    abstract void addAnimationCleanup(View view);
+    abstract void addAnimationCleanup(ViewHolder holder);
 
     @Override
     public boolean animateMove(final ViewHolder holder, int fromX, int fromY,
@@ -403,7 +402,7 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
         final ViewHolder newHolder = changeInfo.newHolder;
         final View newView = newHolder != null ? newHolder.itemView : null;
         if (view != null) {
-            final ViewPropertyAnimatorCompat oldViewAnim = changeOldAnimation(view, changeInfo);
+            final ViewPropertyAnimatorCompat oldViewAnim = changeOldAnimation(holder, changeInfo);
             mChangeAnimations.add(changeInfo.oldHolder);
             oldViewAnim.setListener(new VpaListenerAdapter() {
                 @Override
@@ -414,7 +413,7 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
                 @Override
                 public void onAnimationEnd(View view) {
                     oldViewAnim.setListener(null);
-                    changeAnimationCleanup(view);
+                    changeAnimationCleanup(holder);
                     ViewCompat.setTranslationX(view, 0);
                     ViewCompat.setTranslationY(view, 0);
                     dispatchChangeFinished(changeInfo.oldHolder, true);
@@ -424,7 +423,7 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
             }).start();
         }
         if (newView != null) {
-            final ViewPropertyAnimatorCompat newViewAnimation = changeNewAnimation(newView);
+            final ViewPropertyAnimatorCompat newViewAnimation = changeNewAnimation(newHolder);
             mChangeAnimations.add(changeInfo.newHolder);
             newViewAnimation.setListener(new VpaListenerAdapter() {
                 @Override
@@ -435,7 +434,7 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
                 @Override
                 public void onAnimationEnd(View view) {
                     newViewAnimation.setListener(null);
-                    changeAnimationCleanup(newView);
+                    changeAnimationCleanup(newHolder);
                     ViewCompat.setTranslationX(newView, 0);
                     ViewCompat.setTranslationY(newView, 0);
                     dispatchChangeFinished(changeInfo.newHolder, false);
@@ -480,25 +479,25 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
     /**
      * the animation for removing the old view
      *
-     * @param view
+     * @param holder
      * @return
      */
-    abstract public ViewPropertyAnimatorCompat changeOldAnimation(View view, ChangeInfo changeInfo);
+    abstract public ViewPropertyAnimatorCompat changeOldAnimation(ViewHolder holder, ChangeInfo changeInfo);
 
     /**
      * the animation for changing the new view
      *
-     * @param view
+     * @param holder
      * @return
      */
-    abstract public ViewPropertyAnimatorCompat changeNewAnimation(View view);
+    abstract public ViewPropertyAnimatorCompat changeNewAnimation(ViewHolder holder);
 
     /**
      * the cleanup method if the animation needs to be stopped. and tro prepare for the next view
      *
-     * @param view
+     * @param holder
      */
-    abstract public void changeAnimationCleanup(View view);
+    abstract public void changeAnimationCleanup(ViewHolder holder);
 
     private void endChangeAnimation(List<ChangeInfo> infoList, ViewHolder item) {
         for (int i = infoList.size() - 1; i >= 0; i--) {
@@ -530,7 +529,7 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
         } else {
             return false;
         }
-        changeAnimationCleanup(item.itemView);
+        changeAnimationCleanup(item);
         ViewCompat.setTranslationX(item.itemView, 0);
         ViewCompat.setTranslationY(item.itemView, 0);
         dispatchChangeFinished(item, oldItem);
@@ -538,7 +537,7 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
     }
 
     @Override
-    public void endAnimation(ViewHolder item) {
+    public void endAnimation(final ViewHolder item) {
         final View view = item.itemView;
         // this will trigger end callback which should set properties to their target values.
         ViewCompat.animate(view).cancel();
@@ -554,11 +553,11 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
         }
         endChangeAnimation(mPendingChanges, item);
         if (mPendingRemovals.remove(item)) {
-            removeAnimationCleanup(view);
+            removeAnimationCleanup(item);
             dispatchRemoveFinished(item);
         }
         if (mPendingAdditions.remove(item)) {
-            addAnimationCleanup(view);
+            addAnimationCleanup(item);
             dispatchAddFinished(item);
         }
 
@@ -588,7 +587,7 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
         for (int i = mAdditionsList.size() - 1; i >= 0; i--) {
             ArrayList<ViewHolder> additions = mAdditionsList.get(i);
             if (additions.remove(item)) {
-                addAnimationCleanup(view);
+                addAnimationCleanup(item);
                 dispatchAddFinished(item);
                 if (additions.isEmpty()) {
                     mAdditionsList.remove(i);
@@ -675,7 +674,7 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
         for (int i = count - 1; i >= 0; i--) {
             ViewHolder item = mPendingAdditions.get(i);
             View view = item.itemView;
-            addAnimationCleanup(view);
+            addAnimationCleanup(item);
             dispatchAddFinished(item);
             mPendingAdditions.remove(i);
         }
@@ -712,7 +711,7 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
             for (int j = count - 1; j >= 0; j--) {
                 ViewHolder item = additions.get(j);
                 View view = item.itemView;
-                addAnimationCleanup(view);
+                addAnimationCleanup(item);
                 dispatchAddFinished(item);
                 additions.remove(j);
                 if (additions.isEmpty()) {
