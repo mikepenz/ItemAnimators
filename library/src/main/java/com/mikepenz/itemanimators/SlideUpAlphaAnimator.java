@@ -2,27 +2,27 @@ package com.mikepenz.itemanimators;
 
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorCompat;
-import android.view.View;
+import android.support.v7.widget.RecyclerView;
 
 /**
  * Created by mikepenz on 08.01.16.
  */
 public class SlideUpAlphaAnimator extends DefaultAnimator<SlideUpAlphaAnimator> {
     @Override
-    public void addAnimationPrepare(View view) {
-        ViewCompat.setTranslationY(view, view.getHeight());
-        ViewCompat.setAlpha(view, 0);
+    public void addAnimationPrepare(RecyclerView.ViewHolder holder) {
+        ViewCompat.setTranslationY(holder.itemView, holder.itemView.getHeight());
+        ViewCompat.setAlpha(holder.itemView, 0);
     }
 
     @Override
-    public ViewPropertyAnimatorCompat addAnimation(View view) {
-        return ViewCompat.animate(view).translationY(0).alpha(1).setDuration(getMoveDuration());
+    public ViewPropertyAnimatorCompat addAnimation(RecyclerView.ViewHolder holder) {
+        return ViewCompat.animate(holder.itemView).translationY(0).alpha(1).setDuration(getMoveDuration());
     }
 
     @Override
-    public void addAnimationCleanup(View view) {
-        ViewCompat.setTranslationY(view, 0);
-        ViewCompat.setAlpha(view, 1);
+    public void addAnimationCleanup(RecyclerView.ViewHolder holder) {
+        ViewCompat.setTranslationY(holder.itemView, 0);
+        ViewCompat.setAlpha(holder.itemView, 1);
     }
 
     @Override
@@ -36,14 +36,14 @@ public class SlideUpAlphaAnimator extends DefaultAnimator<SlideUpAlphaAnimator> 
     }
 
     @Override
-    public ViewPropertyAnimatorCompat removeAnimation(View view) {
-        final ViewPropertyAnimatorCompat animation = ViewCompat.animate(view);
-        return animation.setDuration(getMoveDuration()).alpha(0).translationY(view.getHeight());
+    public ViewPropertyAnimatorCompat removeAnimation(RecyclerView.ViewHolder holder) {
+        final ViewPropertyAnimatorCompat animation = ViewCompat.animate(holder.itemView);
+        return animation.setDuration(getMoveDuration()).alpha(0).translationY(holder.itemView.getHeight());
     }
 
     @Override
-    public void removeAnimationCleanup(View view) {
-        ViewCompat.setTranslationY(view, 0);
-        ViewCompat.setAlpha(view, 1);
+    public void removeAnimationCleanup(RecyclerView.ViewHolder holder) {
+        ViewCompat.setTranslationY(holder.itemView, 0);
+        ViewCompat.setAlpha(holder.itemView, 1);
     }
 }

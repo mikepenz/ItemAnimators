@@ -2,56 +2,56 @@ package com.mikepenz.itemanimators;
 
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorCompat;
-import android.view.View;
+import android.support.v7.widget.RecyclerView;
 
 /**
  * Created by mikepenz on 08.01.16.
  */
 public class ScaleYAnimator extends BaseScaleAnimator<ScaleYAnimator> {
-    public void addAnimationPrepare(View view) {
-        ViewCompat.setScaleY(view, 0);
+    public void addAnimationPrepare(RecyclerView.ViewHolder holder) {
+        ViewCompat.setScaleY(holder.itemView, 0);
     }
 
-    public ViewPropertyAnimatorCompat addAnimation(View view) {
-        return ViewCompat.animate(view).scaleY(1).setDuration(getAddDuration());
+    public ViewPropertyAnimatorCompat addAnimation(RecyclerView.ViewHolder holder) {
+        return ViewCompat.animate(holder.itemView).scaleY(1).setDuration(getAddDuration());
     }
 
-    public void addAnimationCleanup(View view) {
-        ViewCompat.setScaleY(view, 1);
+    public void addAnimationCleanup(RecyclerView.ViewHolder holder) {
+        ViewCompat.setScaleY(holder.itemView, 1);
     }
 
 
-    public ViewPropertyAnimatorCompat removeAnimation(View view) {
-        final ViewPropertyAnimatorCompat animation = ViewCompat.animate(view);
+    public ViewPropertyAnimatorCompat removeAnimation(RecyclerView.ViewHolder holder) {
+        final ViewPropertyAnimatorCompat animation = ViewCompat.animate(holder.itemView);
         return animation.setDuration(getRemoveDuration()).scaleY(0);
     }
 
-    public void removeAnimationCleanup(View view) {
-        ViewCompat.setScaleY(view, 1);
+    public void removeAnimationCleanup(RecyclerView.ViewHolder holder) {
+        ViewCompat.setScaleY(holder.itemView, 1);
     }
 
-    public float changeAnimationPrepare1(View view) {
-        return ViewCompat.getScaleY(view);
+    public float changeAnimationPrepare1(RecyclerView.ViewHolder holder) {
+        return ViewCompat.getScaleY(holder.itemView);
     }
 
-    public void changeAnimationPrepare2(View view, float prevValue) {
-        ViewCompat.setScaleY(view, prevValue);
+    public void changeAnimationPrepare2(RecyclerView.ViewHolder holder, float prevValue) {
+        ViewCompat.setScaleY(holder.itemView, prevValue);
     }
 
-    public void changeAnimationPrepare3(View view) {
-        ViewCompat.setScaleY(view, 0);
+    public void changeAnimationPrepare3(RecyclerView.ViewHolder holder) {
+        ViewCompat.setScaleY(holder.itemView, 0);
     }
 
-    public ViewPropertyAnimatorCompat changeOldAnimation(View view, ChangeInfo changeInfo) {
-        return ViewCompat.animate(view).setDuration(getChangeDuration()).scaleY(0).translationX(changeInfo.toX - changeInfo.fromX).translationY(changeInfo.toY - changeInfo.fromY);
+    public ViewPropertyAnimatorCompat changeOldAnimation(RecyclerView.ViewHolder holder, ChangeInfo changeInfo) {
+        return ViewCompat.animate(holder.itemView).setDuration(getChangeDuration()).scaleY(0).translationX(changeInfo.toX - changeInfo.fromX).translationY(changeInfo.toY - changeInfo.fromY);
 
     }
 
-    public ViewPropertyAnimatorCompat changeNewAnimation(View view) {
-        return ViewCompat.animate(view).translationX(0).translationY(0).setDuration(getChangeDuration()).scaleY(1);
+    public ViewPropertyAnimatorCompat changeNewAnimation(RecyclerView.ViewHolder holder) {
+        return ViewCompat.animate(holder.itemView).translationX(0).translationY(0).setDuration(getChangeDuration()).scaleY(1);
     }
 
-    public void changeAnimationCleanup(View view) {
-        ViewCompat.setScaleY(view, 1);
+    public void changeAnimationCleanup(RecyclerView.ViewHolder holder) {
+        ViewCompat.setScaleY(holder.itemView, 1);
     }
 }
