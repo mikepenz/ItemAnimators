@@ -239,7 +239,6 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
     }
 
     private void animateRemoveImpl(final ViewHolder holder) {
-        final View view = holder.itemView;
         final ViewPropertyAnimatorCompat animation = removeAnimation(holder);
         mRemoveAnimations.add(holder);
         animation.setListener(new VpaListenerAdapter() {
@@ -272,7 +271,6 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
     }
 
     private void animateAddImpl(final ViewHolder holder) {
-        final View view = holder.itemView;
         final ViewPropertyAnimatorCompat animation = addAnimation(holder);
         mAddAnimations.add(holder);
         animation.
@@ -293,6 +291,7 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
                         dispatchAddFinished(holder);
                         mAddAnimations.remove(holder);
                         dispatchFinishedWhenDone();
+                        addAnimationCleanup(holder);
                     }
                 }).start();
     }
