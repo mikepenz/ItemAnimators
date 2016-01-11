@@ -1,7 +1,7 @@
 #ItemAnimators  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/itemanimators/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/itemanimators) [![Join the chat at https://gitter.im/mikepenz/itemanimators](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mikepenz/itemanimators?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-The **ItemAnimators** library comes with a huge collections of pre-created Animators for your RecyclerView.
-It was created so developers can easly animate their RecyclerView. It also takes care about correctly handling all view states so you don't have to.
+The **ItemAnimators** library comes with a huge collections of pre-created animators for your `RecyclerView`. It was created so developers can easily animate their `RecyclerView`. 
+These `Animators` correctly work with all view states and `RecyclerView` states (as the `DefaultItemAnimator` does) 
 
 > **DISCLAIMER**: this library does not animate items on scroll, just when added, removed, moved, or changed
 
@@ -32,6 +32,28 @@ mRecyclerView.setItemAnimator(new ScaleUpAnimator());
 //If you want those things out of the box have a look at the **FastAdapter** it handles everything correctly for you
 //https://github.com/mikepenz/FastAdapter
 ```
+
+##Included animators
+
+* **Simple**
+ * `AlphaInAnimator`
+ 
+* **Resize**
+ * `ScaleUpAnimator`
+ * `ScaleXAnimator`
+ * `ScaleYAnimator`
+
+* **Move**
+ * `SlideDownAlphaAnimator` (Best for collapse animations)
+ * `SlideRightAlphaAnimator`
+ * `SlideUpAlphaAnimator`
+ * `SlideLeftAlphaAnimator`
+ * `SlideInOutTopAnimator`
+ * `SlideInOutRightAnimator`
+ * `SlideInOutBottomAnimator`
+ * `SlideInOutLeftAnimator`
+ 
+* more will follow soon...
 
 #Developed By
 
