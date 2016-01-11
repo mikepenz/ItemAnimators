@@ -55,7 +55,14 @@ dependencies {
     compile('com.mikepenz:materialdrawer:5.0.0.fastAdapter.b6-SNAPSHOT@aar') {
         transitive = true
         exclude module: "itemanimators"
+        exclude module: "fastadapter"
     }
+
+    // used to fill the RecyclerView with the DrawerItems
+    // and provides single and multi selection, collapsable items
+    // https://github.com/mikepenz/FastAdapter
+    compile 'com.mikepenz:fastadapter:0.6.0@aar'
+
     //used to generate the Open Source section
     //https://github.com/mikepenz/AboutLibraries
     compile('com.mikepenz:aboutlibraries:5.3.4@aar') {
