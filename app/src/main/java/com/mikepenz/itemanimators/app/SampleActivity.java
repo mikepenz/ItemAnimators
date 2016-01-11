@@ -3,6 +3,7 @@ package com.mikepenz.itemanimators.app;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -128,16 +129,14 @@ public class SampleActivity extends AppCompatActivity {
         //configure our fastAdapter
         //get our recyclerView and do basic setup
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setItemAnimator(new ScaleUpAnimator());
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         mRecyclerView.setAdapter(mItemAdapter.wrap(mFastAdapter));
-
-        //add some dummy data
-        mItemAdapter.add(ImageDummyData.getImages());
+        mRecyclerView.setItemAnimator(new AlphaInAnimator());
+        mRecyclerView.getItemAnimator().setAddDuration(500);
+        mRecyclerView.getItemAnimator().setRemoveDuration(500);
 
         //restore selections (this has to be done after the items were added
         mFastAdapter.withSavedInstanceState(savedInstanceState);
-
 
         /**
          * selection spinner for the different animtors
@@ -160,6 +159,14 @@ public class SampleActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //add some dummy data
+                mItemAdapter.add(ImageDummyData.getImages());
+            }
+        }, 50);
     }
 
     @Override
