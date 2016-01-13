@@ -129,7 +129,8 @@ public class SampleActivity extends AppCompatActivity {
         //configure our fastAdapter
         //get our recyclerView and do basic setup
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        //mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mItemAdapter.wrap(mFastAdapter));
         mRecyclerView.setItemAnimator(new AlphaInAnimator());
         mRecyclerView.getItemAnimator().setAddDuration(500);
@@ -160,6 +161,7 @@ public class SampleActivity extends AppCompatActivity {
             }
         });
 
+        //if we do this. the first added items will be animated :D
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
