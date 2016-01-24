@@ -11,13 +11,8 @@ These `Animators` correctly work with all view states and `RecyclerView` states 
 #Include in your project
 ##Using Maven
 ```javascript
-compile('com.mikepenz:itemanimators:0.2.0-SNAPSHOT@aar') {
+compile('com.mikepenz:itemanimators:0.2.1@aar') {
 	transitive = true
-}
-
-//only on the SNAPSHOT repo right now:
-repositories {
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 }
 ```
 
@@ -37,6 +32,7 @@ mRecyclerView.setItemAnimator(new ScaleUpAnimator());
 
 * **Simple**
  * `AlphaInAnimator`
+ * `AlphaCrossFadeAnimator`
  
 * **Resize**
  * `ScaleUpAnimator`
