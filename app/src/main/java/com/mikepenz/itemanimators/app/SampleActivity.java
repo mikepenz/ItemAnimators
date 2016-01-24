@@ -23,6 +23,7 @@ import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.itemanimators.AlphaCrossFadeAnimator;
 import com.mikepenz.itemanimators.AlphaInAnimator;
 import com.mikepenz.itemanimators.BaseItemAnimator;
 import com.mikepenz.itemanimators.ScaleUpAnimator;
@@ -45,6 +46,7 @@ import java.util.List;
 
 public class SampleActivity extends AppCompatActivity {
     enum Type {
+        CrossFade(new AlphaCrossFadeAnimator()),
         FadeIn(new AlphaInAnimator()),
         ScaleUp(new ScaleUpAnimator()),
         ScaleX(new ScaleXAnimator()),
@@ -122,7 +124,7 @@ public class SampleActivity extends AppCompatActivity {
         //create our FastAdapter which will manage everything
         mFastAdapter = new FastAdapter();
         mFastAdapter.withMultiSelect(true);
-        mFastAdapter.withMultiSelectOnLongClick(false);
+        mFastAdapter.withSelectOnLongClick(false);
         //create our ItemAdapter which will host our items
         mItemAdapter = new ItemAdapter();
 
@@ -130,8 +132,9 @@ public class SampleActivity extends AppCompatActivity {
         //get our recyclerView and do basic setup
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        //mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mItemAdapter.wrap(mFastAdapter));
-        mRecyclerView.setItemAnimator(new AlphaInAnimator());
+        mRecyclerView.setItemAnimator(new AlphaCrossFadeAnimator());
         mRecyclerView.getItemAnimator().setAddDuration(500);
         mRecyclerView.getItemAnimator().setRemoveDuration(500);
 
@@ -160,6 +163,7 @@ public class SampleActivity extends AppCompatActivity {
             }
         });
 
+        //if we do this. the first added items will be animated :D
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

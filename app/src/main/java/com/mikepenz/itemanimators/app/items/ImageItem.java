@@ -1,7 +1,8 @@
 package com.mikepenz.itemanimators.app.items;
 
+import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Color;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -52,16 +53,13 @@ public class ImageItem extends AbstractItem<ImageItem, ImageItem.ViewHolder> {
         return R.layout.image_item;
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void bindView(RecyclerView.ViewHolder holder) {
-        Context ctx = holder.itemView.getContext();
-        //get our viewHolder
-        final ViewHolder viewHolder = (ViewHolder) holder;
+    public void bindView(ViewHolder viewHolder) {
+        super.bindView(viewHolder);
 
-        //set the item selected if it is
-        viewHolder.itemView.setSelected(isSelected());
-        //set itself as tag. (not required)
-        viewHolder.itemView.setTag(this);
+        //get context
+        Context ctx = viewHolder.itemView.getContext();
 
         //define our data for the view
         viewHolder.imageName.setText(mName);
@@ -70,7 +68,7 @@ public class ImageItem extends AbstractItem<ImageItem, ImageItem.ViewHolder> {
 
         //set the background for the item
         int color = UIUtils.getThemeColor(ctx, R.attr.colorPrimary);
-        viewHolder.imageContent.setForeground(FastAdapterUIUtils.getSelectableBackground(ctx, Color.argb(100, Color.red(color), Color.green(color), Color.blue(color))));
+        viewHolder.view.setForeground(FastAdapterUIUtils.getSelectablePressedBackground(ctx, FastAdapterUIUtils.adjustAlpha(color, 100), 50, true));
 
         //load glide
         Glide.clear(viewHolder.imageView);
@@ -102,20 +100,18 @@ public class ImageItem extends AbstractItem<ImageItem, ImageItem.ViewHolder> {
      * our ViewHolder
      */
     protected static class ViewHolder extends RecyclerView.ViewHolder {
-        protected View view;
+        protected FrameLayout view;
         @Bind(R.id.item_image_img)
         protected ImageView imageView;
         @Bind(R.id.item_image_name)
         protected TextView imageName;
         @Bind(R.id.item_image_description)
         protected TextView imageDescription;
-        @Bind(R.id.item_image_content)
-        protected FrameLayout imageContent;
 
         public ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
-            this.view = view;
+            this.view = (FrameLayout) view;
 
             //optimization to preset the correct height for our device
             int screenWidth = view.getContext().getResources().getDisplayMetrics().widthPixels;
