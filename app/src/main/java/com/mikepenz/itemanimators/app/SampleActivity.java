@@ -23,6 +23,7 @@ import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.itemanimators.AlphaCrossFadeAnimator;
 import com.mikepenz.itemanimators.AlphaInAnimator;
 import com.mikepenz.itemanimators.BaseItemAnimator;
 import com.mikepenz.itemanimators.ScaleUpAnimator;
@@ -45,6 +46,7 @@ import java.util.List;
 
 public class SampleActivity extends AppCompatActivity {
     enum Type {
+        CrossFade(new AlphaCrossFadeAnimator()),
         FadeIn(new AlphaInAnimator()),
         ScaleUp(new ScaleUpAnimator()),
         ScaleX(new ScaleXAnimator()),
@@ -132,7 +134,7 @@ public class SampleActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         //mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mItemAdapter.wrap(mFastAdapter));
-        mRecyclerView.setItemAnimator(new AlphaInAnimator());
+        mRecyclerView.setItemAnimator(new AlphaCrossFadeAnimator());
         mRecyclerView.getItemAnimator().setAddDuration(500);
         mRecyclerView.getItemAnimator().setRemoveDuration(500);
 
