@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -56,15 +55,11 @@ public class ImageItem extends AbstractItem<ImageItem, ImageItem.ViewHolder> {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void bindView(RecyclerView.ViewHolder holder) {
-        Context ctx = holder.itemView.getContext();
-        //get our viewHolder
-        final ViewHolder viewHolder = (ViewHolder) holder;
+    public void bindView(ViewHolder viewHolder) {
+        super.bindView(viewHolder);
 
-        //set the item selected if it is
-        viewHolder.itemView.setSelected(isSelected());
-        //set itself as tag. (not required)
-        viewHolder.itemView.setTag(this);
+        //get context
+        Context ctx = viewHolder.itemView.getContext();
 
         //define our data for the view
         viewHolder.imageName.setText(mName);
@@ -78,20 +73,6 @@ public class ImageItem extends AbstractItem<ImageItem, ImageItem.ViewHolder> {
         //load glide
         Glide.clear(viewHolder.imageView);
         Glide.with(ctx).load(mImageUrl).animate(R.anim.alpha_on).into(viewHolder.imageView);
-    }
-
-    public static int getSelectableBackground(Context ctx) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            // If we're running on Honeycomb or newer, then we can use the Theme's
-            // selectableItemBackground to ensure that the View has a pressed state
-            TypedValue outValue = new TypedValue();
-            ctx.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
-            return outValue.resourceId;
-        } else {
-            TypedValue outValue = new TypedValue();
-            ctx.getTheme().resolveAttribute(android.R.attr.itemBackground, outValue, true);
-            return outValue.resourceId;
-        }
     }
 
     /**
