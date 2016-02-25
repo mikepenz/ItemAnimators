@@ -20,38 +20,33 @@
 
     <section class="main-content">
       <h1>
-<a id="itemanimators---" class="anchor" href="#itemanimators---" aria-hidden="true"><span class="octicon octicon-link"></span></a>ItemAnimators  <a href="https://maven-badges.herokuapp.com/maven-central/com.mikepenz/itemanimators"><img src="https://maven-badges.herokuapp.com/maven-central/com.mikepenz/itemanimators/badge.svg?style=flat" alt="Maven Central"></a> <a href="https://gitter.im/mikepenz/itemanimators?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/mikepenz/itemanimators"></a>
+<a id="itemanimators---" class="anchor" href="#itemanimators---" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ItemAnimators  <a href="https://maven-badges.herokuapp.com/maven-central/com.mikepenz/itemanimators"><img src="https://maven-badges.herokuapp.com/maven-central/com.mikepenz/itemanimators/badge.svg?style=flat" alt="Maven Central"></a> <a href="https://gitter.im/mikepenz/itemanimators?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/mikepenz/itemanimators"></a>
 </h1>
 
-<p>The <strong>ItemAnimators</strong> library comes with a huge collections of pre-created Animators for your RecyclerView.
-It was created so developers can easly animate their RecyclerView. It also takes care about correctly handling all view states so you don't have to.</p>
+<p>The <strong>ItemAnimators</strong> library comes with a huge collections of pre-created animators for your <code>RecyclerView</code>. It was created so developers can easily animate their <code>RecyclerView</code>. 
+These <code>Animators</code> correctly work with all view states and <code>RecyclerView</code> states (as the <code>DefaultItemAnimator</code> does) </p>
 
 <blockquote>
 <p><strong>DISCLAIMER</strong>: this library does not animate items on scroll, just when added, removed, moved, or changed</p>
 </blockquote>
 
 <h1>
-<a id="preview" class="anchor" href="#preview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preview</h1>
+<a id="preview" class="anchor" href="#preview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Preview</h1>
 
 <p><img src="DEV/preview/Telecine_2016-01-09-19-01-46.gif" width="32%"> </p>
 
 <h1>
-<a id="include-in-your-project" class="anchor" href="#include-in-your-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Include in your project</h1>
+<a id="include-in-your-project" class="anchor" href="#include-in-your-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Include in your project</h1>
 
 <h2>
-<a id="using-maven" class="anchor" href="#using-maven" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using Maven</h2>
+<a id="using-maven" class="anchor" href="#using-maven" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using Maven</h2>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-en">compile</span>(<span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:itemanimators:0.1.0-SNAPSHOT@aar<span class="pl-pds">'</span></span>) {
+<div class="highlight highlight-source-js"><pre><span class="pl-en">compile</span>(<span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:itemanimators:0.2.2@aar<span class="pl-pds">'</span></span>) {
     transitive <span class="pl-k">=</span> <span class="pl-c1">true</span>
-}
-
-<span class="pl-c">//only on the SNAPSHOT repo right now:</span>
-repositories {
-    maven { url <span class="pl-s"><span class="pl-pds">"</span>https://oss.sonatype.org/content/repositories/snapshots/<span class="pl-pds">"</span></span> }
 }</pre></div>
 
 <h2>
-<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h2>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use</h2>
 
 <div class="highlight highlight-source-java"><pre><span class="pl-c">//just provide the animator to your RecyclerView</span>
 mRecyclerView<span class="pl-k">.</span>setItemAnimator(<span class="pl-k">new</span> <span class="pl-smi">ScaleUpAnimator</span>());
@@ -62,8 +57,47 @@ mRecyclerView<span class="pl-k">.</span>setItemAnimator(<span class="pl-k">new</
 <span class="pl-c">//If you want those things out of the box have a look at the **FastAdapter** it handles everything correctly for you</span>
 <span class="pl-c">//https://github.com/mikepenz/FastAdapter</span></pre></div>
 
+<h2>
+<a id="included-animators" class="anchor" href="#included-animators" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Included animators</h2>
+
+<ul>
+<li>
+<p><strong>Simple</strong></p>
+
+<ul>
+<li><code>AlphaInAnimator</code></li>
+<li><code>AlphaCrossFadeAnimator</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Resize</strong></p>
+
+<ul>
+<li><code>ScaleUpAnimator</code></li>
+<li><code>ScaleXAnimator</code></li>
+<li><code>ScaleYAnimator</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Move</strong></p>
+
+<ul>
+<li>
+<code>SlideDownAlphaAnimator</code> (Best for collapse animations)</li>
+<li><code>SlideRightAlphaAnimator</code></li>
+<li><code>SlideUpAlphaAnimator</code></li>
+<li><code>SlideLeftAlphaAnimator</code></li>
+<li><code>SlideInOutTopAnimator</code></li>
+<li><code>SlideInOutRightAnimator</code></li>
+<li><code>SlideInOutBottomAnimator</code></li>
+<li><code>SlideInOutLeftAnimator</code></li>
+</ul>
+</li>
+<li><p>more will follow soon...</p></li>
+</ul>
+
 <h1>
-<a id="developed-by" class="anchor" href="#developed-by" aria-hidden="true"><span class="octicon octicon-link"></span></a>Developed By</h1>
+<a id="developed-by" class="anchor" href="#developed-by" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Developed By</h1>
 
 <ul>
 <li>Mike Penz
@@ -78,7 +112,7 @@ mRecyclerView<span class="pl-k">.</span>setItemAnimator(<span class="pl-k">new</
 </ul>
 
 <h1>
-<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h1>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h1>
 
 <pre><code>Copyright 2016 Mike Penz
 
