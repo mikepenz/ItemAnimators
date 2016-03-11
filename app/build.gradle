@@ -12,8 +12,8 @@ android {
     defaultConfig {
         minSdkVersion 11
         targetSdkVersion 23
-        versionCode 22
-        versionName '0.2.2'
+        versionCode 23
+        versionName '0.2.3'
 
         applicationVariants.all { variant ->
             variant.outputs.each { output ->
@@ -53,7 +53,7 @@ dependencies {
 
     //used to generate the drawer on the left
     //https://github.com/mikepenz/MaterialDrawer
-    compile('com.mikepenz:materialdrawer:5.0.6-SNAPSHOT@aar') {
+    compile('com.mikepenz:materialdrawer:5.1.2@aar') {
         transitive = true
         exclude module: "itemanimators"
         exclude module: "fastadapter"
@@ -62,7 +62,7 @@ dependencies {
     // used to fill the RecyclerView with the DrawerItems
     // and provides single and multi selection, collapsable items
     // https://github.com/mikepenz/FastAdapter
-    compile 'com.mikepenz:fastadapter:1.2.0@aar'
+    compile 'com.mikepenz:fastadapter:1.2.3@aar'
 
     //used to generate the Open Source section
     //https://github.com/mikepenz/AboutLibraries
