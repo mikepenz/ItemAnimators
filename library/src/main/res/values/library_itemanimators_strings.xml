@@ -10,7 +10,7 @@
            The <b>ItemAnimators</b> library comes with a huge collections of pre-created Animators for your RecyclerView.
         ]]>
     </string>
-    <string name="library_itemanimators_libraryVersion">0.2.3</string>
+    <string name="library_itemanimators_libraryVersion">0.2.4</string>
     <string name="library_itemanimators_libraryWebsite">https://github.com/mikepenz/itemanimators</string>
     <string name="library_itemanimators_licenseId">apache_2_0</string>
     <string name="library_itemanimators_isOpenSource">true</string>
