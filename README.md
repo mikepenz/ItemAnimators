@@ -11,7 +11,7 @@ These `Animators` correctly work with all view states and `RecyclerView` states 
 #Include in your project
 ##Using Maven
 ```javascript
-compile('com.mikepenz:itemanimators:0.2.3@aar') {
+compile('com.mikepenz:itemanimators:0.2.4@aar') {
 	transitive = true
 }
 ```
