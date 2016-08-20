@@ -1,8 +1,6 @@
 package com.mikepenz.itemanimators.app.items;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -53,7 +51,6 @@ public class ImageItem extends AbstractItem<ImageItem, ImageItem.ViewHolder> {
         return R.layout.image_item;
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void bindView(ViewHolder viewHolder) {
         super.bindView(viewHolder);
