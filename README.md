@@ -1,21 +1,21 @@
-#ItemAnimators  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/itemanimators/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/itemanimators) [![Join the chat at https://gitter.im/mikepenz/itemanimators](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mikepenz/itemanimators?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# ItemAnimators  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/itemanimators/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/itemanimators) [![Join the chat at https://gitter.im/mikepenz/itemanimators](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mikepenz/itemanimators?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 The **ItemAnimators** library comes with a huge collections of pre-created animators for your `RecyclerView`. It was created so developers can easily animate their `RecyclerView`. 
 These `Animators` correctly work with all view states and `RecyclerView` states (as the `DefaultItemAnimator` does) 
 
 > **DISCLAIMER**: this library does not animate items on scroll, just when added, removed, moved, or changed
 
-#Preview
+# Preview
 <img src="DEV/preview/Telecine_2016-01-09-19-01-46.gif" width="32%"> 
 
-#Include in your project
-##Using Maven
+# Include in your project
+## Using Maven
 ```javascript
 compile "com.mikepenz:itemanimators:1.0.0@aar"
 compile "com.android.support:recyclerview-v7:${supportLibVersion}"
 ```
 
-##How to use
+## How to use
 ```java
 //just provide the animator to your RecyclerView
 mRecyclerView.setItemAnimator(new ScaleUpAnimator());
@@ -50,13 +50,13 @@ mRecyclerView.setItemAnimator(new ScaleUpAnimator());
  
 * more will follow soon...
 
-#Developed By
+# Developed By
 
 * Mike Penz
  * [mikepenz.com](http://mikepenz.com) - <mikepenz@gmail.com>
  * [paypal.me/mikepenz](http://paypal.me/mikepenz)
 
-#License
+# License
 
     Copyright 2016 Mike Penz
 
