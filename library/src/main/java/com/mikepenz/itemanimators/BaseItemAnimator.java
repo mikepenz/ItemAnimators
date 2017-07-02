@@ -15,7 +15,8 @@
  */
 package com.mikepenz.itemanimators;
 
-import android.support.v4.animation.AnimatorCompatHelper;
+import android.animation.TimeInterpolator;
+import android.animation.ValueAnimator;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorCompat;
 import android.support.v4.view.ViewPropertyAnimatorListener;
@@ -37,6 +38,7 @@ import java.util.List;
  */
 public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
     private static final boolean DEBUG = false;
+    private static TimeInterpolator sDefaultInterpolator;
 
     private ArrayList<ViewHolder> mPendingRemovals = new ArrayList<>();
     private ArrayList<ViewHolder> mPendingAdditions = new ArrayList<>();
@@ -623,7 +625,11 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
     }
 
     public void resetAnimation(ViewHolder holder) {
-        AnimatorCompatHelper.clearInterpolator(holder.itemView);
+        if(sDefaultInterpolator == null) {
+            sDefaultInterpolator = (new ValueAnimator()).getInterpolator();
+        }
+
+        holder.itemView.animate().setInterpolator(sDefaultInterpolator);
         endAnimation(holder);
     }
 
