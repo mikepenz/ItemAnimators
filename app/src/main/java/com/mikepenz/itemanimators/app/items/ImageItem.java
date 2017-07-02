@@ -8,11 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.mikepenz.fastadapter.commons.utils.FastAdapterUIUtils;
 import com.mikepenz.fastadapter.items.AbstractItem;
-import com.mikepenz.fastadapter.utils.FastAdapterUIUtils;
-import com.mikepenz.fastadapter.utils.ViewHolderFactory;
 import com.mikepenz.itemanimators.app.R;
 import com.mikepenz.materialize.util.UIUtils;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -52,8 +53,8 @@ public class ImageItem extends AbstractItem<ImageItem, ImageItem.ViewHolder> {
     }
 
     @Override
-    public void bindView(ViewHolder viewHolder) {
-        super.bindView(viewHolder);
+    public void bindView(ViewHolder viewHolder, List<Object> payloads) {
+        super.bindView(viewHolder, payloads);
 
         //get context
         Context ctx = viewHolder.itemView.getContext();
@@ -72,25 +73,9 @@ public class ImageItem extends AbstractItem<ImageItem, ImageItem.ViewHolder> {
         Glide.with(ctx).load(mImageUrl).animate(R.anim.alpha_on).into(viewHolder.imageView);
     }
 
-    /**
-     * our ItemFactory implementation which creates the ViewHolder for our adapter.
-     * It is highly recommended to implement a ViewHolderFactory as it is 0-1ms faster for ViewHolder creation,
-     * and it is also many many times more efficient if you define custom listeners on views within your item.
-     */
-    public class ItemFactory implements ViewHolderFactory<ViewHolder> {
-        public ViewHolder create(View v) {
-            return new ViewHolder(v);
-        }
-    }
-
-    /**
-     * return our ViewHolderFactory implementation here
-     *
-     * @return
-     */
     @Override
-    public ViewHolderFactory getFactory() {
-        return new ItemFactory();
+    public ViewHolder getViewHolder(View v) {
+        return new ViewHolder(v);
     }
 
     /**
