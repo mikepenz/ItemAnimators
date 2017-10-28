@@ -27,7 +27,7 @@ mRecyclerView.setItemAnimator(new ScaleUpAnimator());
 //https://github.com/mikepenz/FastAdapter
 ```
 
-##Included animators
+## Included animators
 
 * **Simple**
  * `AlphaInAnimator`
