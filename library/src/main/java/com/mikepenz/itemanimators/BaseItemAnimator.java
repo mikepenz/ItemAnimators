@@ -750,6 +750,14 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
             ViewCompat.animate(viewHolders.get(i).itemView).cancel();
         }
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean canReuseUpdatedViewHolder(@NonNull ViewHolder viewHolder, @NonNull List<Object> payloads) {
+        return !payloads.isEmpty() || super.canReuseUpdatedViewHolder(viewHolder, payloads);
+    }
 
     private static class VpaListenerAdapter implements ViewPropertyAnimatorListener {
         @Override
