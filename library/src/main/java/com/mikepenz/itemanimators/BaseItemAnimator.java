@@ -17,6 +17,7 @@ package com.mikepenz.itemanimators;
 
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
+import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorCompat;
 import android.support.v4.view.ViewPropertyAnimatorListener;
@@ -749,6 +750,14 @@ public abstract class BaseItemAnimator<T> extends SimpleItemAnimator {
         for (int i = viewHolders.size() - 1; i >= 0; i--) {
             ViewCompat.animate(viewHolders.get(i).itemView).cancel();
         }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean canReuseUpdatedViewHolder(@NonNull ViewHolder viewHolder, @NonNull List<Object> payloads) {
+        return !payloads.isEmpty() || super.canReuseUpdatedViewHolder(viewHolder, payloads);
     }
 
     private static class VpaListenerAdapter implements ViewPropertyAnimatorListener {
