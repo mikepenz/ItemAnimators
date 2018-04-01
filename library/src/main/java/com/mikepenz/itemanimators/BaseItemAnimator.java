@@ -17,6 +17,7 @@ package com.mikepenz.itemanimators;
 
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
+import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorCompat;
 import android.support.v4.view.ViewPropertyAnimatorListener;
