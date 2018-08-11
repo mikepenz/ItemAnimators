@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package android.support.v7.widget;
+package androidx.appcompat.widget;
 
-import android.support.v4.animation.AnimatorCompatHelper;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPropertyAnimatorCompat;
-import android.support.v4.view.ViewPropertyAnimatorListener;
-import android.support.v7.widget.RecyclerView.ViewHolder;
+import androidx.core.animation.AnimatorCompatHelper;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.ViewPropertyAnimatorCompat;
+import androidx.core.view.ViewPropertyAnimatorListener;
+import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import android.view.View;
 
 import java.util.ArrayList;

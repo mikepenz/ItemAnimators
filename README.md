@@ -11,9 +11,11 @@ These `Animators` correctly work with all view states and `RecyclerView` states 
 # Include in your project
 ## Using Maven
 ```javascript
-implementation "com.mikepenz:itemanimators:1.0.2@aar"
-implementation "com.android.support:recyclerview-v7:${supportLibVersion}"
+implementation "com.mikepenz:itemanimators:1.1.0-rc01@aar"
+implementation "androidx.recyclerview:recyclerview:${androidXVersion}"
 ```
+
+To use appcompat please use a version smaller than 1.1.0. (See the releases on GitHub)
 
 ## How to use
 ```java

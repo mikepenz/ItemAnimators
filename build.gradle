@@ -1,11 +1,30 @@
 buildscript {
+    ext {
+        release = [
+                versionName: "1.1.0-rc01",
+                versionCode: 1100
+        ]
+
+        setup = [
+                compileSdk: 28,
+                buildTools: "28.0.2",
+                minSdk    : 14,
+                targetSdk : 28
+        ]
+
+        versions = [
+                androidXVersion: '1.0.0-rc01'
+        ]
+    }
+
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.0'
-        classpath 'com.novoda:bintray-release:0.8.1'
+        classpath 'com.android.tools.build:gradle:3.3.0-alpha05'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
     }
 }
 
@@ -15,10 +34,4 @@ allprojects {
         jcenter()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
-}
-
-ext {
-    compileSdkVersion = 27
-    buildToolsVersion = "27.0.3"
-    supportLibVersion = "27.1.0"
 }

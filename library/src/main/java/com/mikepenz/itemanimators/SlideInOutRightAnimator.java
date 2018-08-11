@@ -1,8 +1,8 @@
 package com.mikepenz.itemanimators;
 
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPropertyAnimatorCompat;
-import android.support.v7.widget.RecyclerView;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.ViewPropertyAnimatorCompat;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 /**
