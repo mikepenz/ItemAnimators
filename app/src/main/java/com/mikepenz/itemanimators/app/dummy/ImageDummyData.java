@@ -1,9 +1,10 @@
 package com.mikepenz.itemanimators.app.dummy;
 
 
+import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.itemanimators.app.items.ImageItem;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -23,7 +24,7 @@ public class ImageDummyData {
         }
     }
 
-    public static List<ImageItem> getImages() {
+    public static List<IItem> getImages() {
         return toList(
                 new ImageItem().withName("Yang Zhuo Yong Cuo, Tibet China").withDescription("#100063").withImage("https://raw.githubusercontent.com/mikepenz/earthview-wallpapers/develop/thumb/yang_zhuo_yong_cuo,_tibet-china-63.jpg"),
                 new ImageItem().withName("Yellowstone United States").withDescription("#100017").withImage("https://raw.githubusercontent.com/mikepenz/earthview-wallpapers/develop/thumb/yellowstone-united_states-17.jpg"),
@@ -59,7 +60,11 @@ public class ImageDummyData {
         );
     }
 
-    private static List<ImageItem> toList(ImageItem... imageItems) {
-        return Arrays.asList(imageItems);
+    private static List<IItem> toList(ImageItem... imageItems) {
+        ArrayList<IItem> items = new ArrayList<>();
+        for (ImageItem imageItem : imageItems) {
+            items.add(imageItem);
+        }
+        return items;
     }
 }

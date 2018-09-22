@@ -1,7 +1,6 @@
 package com.mikepenz.itemanimators.app.items;
 
 import android.content.Context;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -15,6 +14,7 @@ import com.mikepenz.materialize.util.UIUtils;
 
 import java.util.List;
 
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

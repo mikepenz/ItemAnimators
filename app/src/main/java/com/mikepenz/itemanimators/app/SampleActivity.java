@@ -4,11 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -44,6 +39,12 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 public class SampleActivity extends AppCompatActivity {
     enum Type {
         CrossFade(new AlphaCrossFadeAnimator()),
@@ -74,7 +75,7 @@ public class SampleActivity extends AppCompatActivity {
     //save our FastAdapter
     private FastAdapter mFastAdapter;
     //save our FastAdapter
-    private ItemAdapter mItemAdapter;
+    private ItemAdapter<IItem> mItemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,20 +122,21 @@ public class SampleActivity extends AppCompatActivity {
                 })
                 .build();
 
+        //create our ItemAdapter which will host our items
+        mItemAdapter = new ItemAdapter<>();
+
         //create our FastAdapter which will manage everything
-        mFastAdapter = new FastAdapter();
+        mFastAdapter = FastAdapter.with(mItemAdapter);
         mFastAdapter.withSelectable(true);
         mFastAdapter.withMultiSelect(true);
         mFastAdapter.withSelectOnLongClick(false);
-        //create our ItemAdapter which will host our items
-        mItemAdapter = new ItemAdapter();
 
         //configure our fastAdapter
         //get our recyclerView and do basic setup
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         //mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(mItemAdapter.wrap(mFastAdapter));
+        mRecyclerView.setAdapter(mFastAdapter);
         mRecyclerView.setItemAnimator(new AlphaCrossFadeAnimator());
         mRecyclerView.getItemAnimator().setAddDuration(500);
         mRecyclerView.getItemAnimator().setRemoveDuration(500);
@@ -207,7 +209,7 @@ public class SampleActivity extends AppCompatActivity {
                 return true;
             case R.id.item_change:
                 for (Integer pos : (Iterable<Integer>) mFastAdapter.getSelections()) {
-                    ImageItem i = (ImageItem) mItemAdapter.getItem(pos);
+                    ImageItem i = (ImageItem) mItemAdapter.getAdapterItem(pos);
                     i.withName("CHANGED");
                     i.withDescription("This item was modified");
                     mItemAdapter.set(pos, i);
